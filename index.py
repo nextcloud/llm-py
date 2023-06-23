@@ -4,6 +4,7 @@ from chains.formalize import FormalizeChain
 from chains.simplify import SimplifyChain
 from chains.summarize import SummarizeChain
 from chains.headline import HeadlineChain
+from chains.free_prompt import FreePromptChain
 from llm import llm
 import sys
 
@@ -12,6 +13,7 @@ chains['summarize'] = SummarizeChain(llm=llm)
 chains['simplify'] = SimplifyChain(llm=llm)
 chains['formalize'] = FormalizeChain(llm=llm)
 chains['headline'] = HeadlineChain(llm=llm)
+chains['free_prompt'] = FreePromptChain(llm=llm)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-t", "--task", choices=chains.keys(), default='summarize')
