@@ -4,13 +4,12 @@ version = "0.1.0"
 description = ""
 authors = ["Marcel Klehr <mklehr@gmx.net>"]
 readme = "README.md"
-packages = [{include = "nc_llm_python"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-langchain = "^0.0.192"
+langchain = "^0.0.242"
 torch = {version = "^2.0.1+cpu", source = "pytorch"}
-gpt4all = "^0.3.0"
+gpt4all = "1.x"
 
 
 [[tool.poetry.source]]
