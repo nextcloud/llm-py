@@ -13,6 +13,7 @@ chains['summarize'] = SummarizeChain(llm=llm)
 chains['simplify'] = SimplifyChain(llm=llm)
 chains['formalize'] = FormalizeChain(llm=llm)
 chains['headline'] = HeadlineChain(llm=llm)
+chains['topics'] = TopicsChain(llm=llm)
 chains['free_prompt'] = FreePromptChain(llm=llm)
 
 parser = argparse.ArgumentParser()
