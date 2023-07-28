@@ -4,6 +4,7 @@ from chains.formalize import FormalizeChain
 from chains.simplify import SimplifyChain
 from chains.summarize import SummarizeChain
 from chains.headline import HeadlineChain
+from chains.topics import TopicsChain
 from chains.free_prompt import FreePromptChain
 from llm import llm
 import sys
