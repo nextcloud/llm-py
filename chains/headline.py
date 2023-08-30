@@ -6,9 +6,6 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.base import Chain
 from pydantic import Extra
 
-
-# Doesn't work with GPT4All
-
 class HeadlineChain(Chain):
     """
     A headline chain
@@ -21,7 +18,7 @@ class HeadlineChain(Chain):
         "
         {text}
         "
-        Write a headline for the above text in one sentence
+        Write a single headline for the above text in one sentence
         """
     )
 

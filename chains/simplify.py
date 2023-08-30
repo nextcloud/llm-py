@@ -15,11 +15,11 @@ class SimplifyChain(Chain):
     prompt: BasePromptTemplate = PromptTemplate(
         input_variables=["text"],
         template="""
-        Please make the following text easier to understand, so that a child can understand it.
+        Rewrite and rephrase the following text to make it easier to understand, so that a 5-year-old child can understand it.
         "
         {text}
         "
-        Please make this text easier to understand, so that a child can understand it. Do not make up anything new that is not in the above text.
+        Rewrite and rephrase the above text to make it easier to understand, so that a 5-year-old child can understand it. Circumscribe jargon terms within the text. Do not make up anything new that is not in the original text. Only return the new, rewritten text.
         """
     )
 

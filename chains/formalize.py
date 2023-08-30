@@ -17,11 +17,11 @@ class FormalizeChain(Chain):
     prompt: BasePromptTemplate = PromptTemplate(
         input_variables=["text"],
         template="""
-        Write the following text again, but differently: Use only formal language and be very polite:
+        Rewrite the following text and rephrase it to use only formal language and be very polite:
         "
         {text}
         "
-        Write the above text again, rephrase it, but use only formal language and be polite.
+        Write the above text again, rephrase it to use only formal language and be very polite.
         """
     )
 
