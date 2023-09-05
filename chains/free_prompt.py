@@ -1,8 +1,7 @@
 from typing import List, Dict, Any, Optional
-from langchain import BasePromptTemplate, PromptTemplate
+from langchain.prompts.base import StringPromptValue
 from langchain.base_language import BaseLanguageModel
 from langchain.callbacks.manager import CallbackManagerForChainRun
-from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.base import Chain
 from pydantic import Extra
 
@@ -41,7 +40,7 @@ class FreePromptChain(Chain):
             inputs: Dict[str, Any],
             run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, str]:
-        out = self.llm.generate_prompt([inputs['text']])
+        out = self.llm.generate_prompt([StringPromptValue(text=inputs['text'])])
         text = out.generations[0][0].text
 
         return {self.output_key: text}
