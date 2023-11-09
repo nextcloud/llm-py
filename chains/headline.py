@@ -1,5 +1,5 @@
 from typing import List, Dict, Any, Optional
-from langchain import BasePromptTemplate, PromptTemplate
+from langchain.prompts import BasePromptTemplate, PromptTemplate
 from langchain.base_language import BaseLanguageModel
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.text_splitter import CharacterTextSplitter
