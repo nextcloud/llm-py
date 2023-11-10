@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 threads = os.environ.get('LLM_THREADS', 4)
-llm = GPT4All(model=dir_path + "/models/"+args.model, n_threads=int(threads))
+llm = GPT4All(model=os.path.join(dir_path, "models", args.model), n_threads=int(threads))
 
 chains = {}
 chains['summarize'] = SummarizeChain(llm=llm)
