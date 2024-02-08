@@ -1,3 +1,5 @@
 /chains/__pycache__/
 /models/*
+!/models
 !/model/.gitkeep
+!/models/model_config.py
