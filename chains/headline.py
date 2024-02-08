@@ -1,8 +1,7 @@
 from typing import List, Dict, Any, Optional
 from langchain.prompts import BasePromptTemplate, PromptTemplate
-from langchain.base_language import BaseLanguageModel
 from langchain.callbacks.manager import CallbackManagerForChainRun
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains import LLMChain
 from langchain.chains.base import Chain
 from pydantic import Extra
 
@@ -10,8 +9,8 @@ class HeadlineChain(Chain):
     """
     A headline chain
     """
-
-    prompt: BasePromptTemplate = PromptTemplate(
+    system_prompt = "You're an AI assistant tasked with finding a headline for the text given to you by the user."
+    user_prompt: BasePromptTemplate = PromptTemplate(
         input_variables=["text"],
         template="""
         Find a headline for the following text
@@ -24,7 +23,7 @@ class HeadlineChain(Chain):
 
 
     """Prompt object to use."""
-    llm: BaseLanguageModel
+    llm_chain: LLMChain
     output_key: str = "text"  #: :meta private:
 
     class Config:
@@ -54,10 +53,13 @@ class HeadlineChain(Chain):
             inputs: Dict[str, Any],
             run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, str]:
-        out = self.llm.generate_prompt([self.prompt.format_prompt(text=inputs['text'])])
-        text = out.generations[0][0].text
-
-        return {self.output_key: text}
+        
+        if not {"user_prompt", "system_prompt"} == set(self.llm_chain.input_keys):
+            raise ValueError("llm_chain must have input_keys ['user_prompt', 'system_prompt']")
+        if not self.llm_chain.output_keys == [self.output_key]:
+            raise ValueError(f"llm_chain must have output_keys [{self.output_key}]")
+        
+        return self.llm_chain.invoke({"user_prompt": self.user_prompt.format_prompt(text=inputs['text']), "system_prompt": self.system_prompt})
 
     @property
     def _chain_type(self) -> str:
