@@ -2,7 +2,6 @@ from typing import List, Dict, Any, Optional
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
 from langchain.chains import LLMChain
-from pydantic import Extra
 
 class FreePromptChain(Chain):
     """
@@ -15,7 +14,7 @@ class FreePromptChain(Chain):
     class Config:
         """Configuration for this pydantic object."""
 
-        extra = Extra.forbid
+        extra = 'forbid'
         arbitrary_types_allowed = True
 
     @property

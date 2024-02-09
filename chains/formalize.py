@@ -4,7 +4,6 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.base import Chain
 from langchain.chains import LLMChain
-from pydantic import Extra
 
 
 # Doesn't work with GPT4All
@@ -35,7 +34,7 @@ class FormalizeChain(Chain):
     class Config:
         """Configuration for this pydantic object."""
 
-        extra = Extra.forbid
+        extra = 'forbid'
         arbitrary_types_allowed = True
 
     @property

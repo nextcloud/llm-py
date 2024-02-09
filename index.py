@@ -6,11 +6,11 @@ from chains.summarize import SummarizeChain
 from chains.headline import HeadlineChain
 from chains.topics import TopicsChain
 from chains.free_prompt import FreePromptChain
-from models.prompt_templates import ModelConfig
+from models.model_config import ModelConfig
 from langchain.llms import GPT4All
-from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
+import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-t", "--task", choices=['summarize', 'simplify', 'formalize', 'headline', 'topics', 'free_prompt'], default='simplify')

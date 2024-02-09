@@ -4,7 +4,6 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.base import Chain
 from langchain.chains import LLMChain
-from pydantic import Extra
 
 
 class SimplifyChain(Chain):
@@ -33,7 +32,7 @@ class SimplifyChain(Chain):
     class Config:
         """Configuration for this pydantic object."""
 
-        extra = Extra.forbid
+        extra = 'forbid'
         arbitrary_types_allowed = True
 
     @property
@@ -67,7 +66,7 @@ class SimplifyChain(Chain):
             separator='\n\n|\\.|\\?|\\!', chunk_size=8000, chunk_overlap=0, keep_separator=True)
         texts = text_splitter.split_text(inputs['text'])
         outputs = self.llm_chain.apply([{"user_prompt": self.user_prompt.format_prompt(text=t), "system_prompt": self.system_prompt} for t in texts])
-        texts = [output.text for output in outputs]
+        texts = [output['text'] for output in outputs]
 
         return {self.output_key: '\n\n'.join(texts)}
 

@@ -3,7 +3,6 @@ from langchain.prompts import BasePromptTemplate, PromptTemplate
 from langchain.chains import LLMChain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
-from pydantic import Extra
 
 
 class TopicsChain(Chain):
@@ -30,7 +29,7 @@ class TopicsChain(Chain):
     class Config:
         """Configuration for this pydantic object."""
 
-        extra = Extra.forbid
+        extra = 'forbid'
         arbitrary_types_allowed = True
 
     @property
